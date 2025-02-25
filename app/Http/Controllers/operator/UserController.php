@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -30,6 +31,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $uuid = Str::uuid()->toString();
+        $fileName = $uuid . '-' . time() . '.' . $request->img->getExtension();
+        $request->img->move(public_path('../public/storage/galereya/'), $fileName);
         User::create([
             'name'=>$request->name,
             'phone'=>$request->phone,
@@ -38,7 +42,8 @@ class UserController extends Controller
             'role'=>3,
             'village_id'=>$request->village_id,
             'region_id'=>Auth::user()->region_id,
-            'district_id'=>Auth::user()->district_id
+            'district_id'=>Auth::user()->district_id,
+            'img' => $fileName,
         ])->assignRole(3);
         return redirect()->back();
 

@@ -18,4 +18,6 @@ Route::group(['middleware' => ['role:operator']], function () {
     Route::resource('village',\App\Http\Controllers\VillageController::class);
     Route::resource('operator/user',\App\Http\Controllers\operator\UserController::class);
     Route::resource('location',\App\Http\Controllers\operator\LocationController::class);
+    Route::post('/compare-faces', [\App\Http\Controllers\operator\HomeController::class, 'compareFaces']);
+    Route::get('/test', function (){return view('test');});
 });

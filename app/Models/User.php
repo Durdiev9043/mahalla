@@ -27,6 +27,7 @@ class User extends Authenticatable
         'village_id',
         'district_id',
         'region_id',
+        'img'
 
     ];
 

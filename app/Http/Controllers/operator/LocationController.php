@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\operator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -28,7 +29,13 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data=Location::create([
+            'village_id'=>$request->village_id,
+            'lat'=>$request->lat,
+            'lang'=>$request->lang
+        ]);
+        return redirect()->back();
     }
 
     /**
