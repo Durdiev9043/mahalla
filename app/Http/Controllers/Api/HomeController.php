@@ -10,7 +10,7 @@ use App\Models\User;
 class HomeController extends BaseController
 {
     public function come(Request $request){
-        $user=User:where('id',$request->user_id)->first();
+        $user=User::where('id',$request->user_id)->first();
 
 
         $image1 = $request->file('image');
