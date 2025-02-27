@@ -18,7 +18,7 @@
             </div>
         @endif
         <div class="pagetitle">
-            <h1>Buyurtmalar holati boyicha ma'lumot</h1>
+            <h1>Mahalla yettiligini nazorat qiluvchi axborot tizimi</h1>
 
 {{--            <div class="btn-add">--}}
 {{--                <a href="{{ route('patient.create') }}">Be`mor qoshish</a>--}}
@@ -49,74 +49,8 @@
                         <div class="card-body row">
 
                             <div style="margin-top: 10px" class="col-6">
-                            <table  class="table table-bordered datatable">
-                                <tr>
-                                    <td>
-                                       -/-
-                                    </td>
-                                    <td>
-                                        soni
-                                    </td>
-                                    <td>
-                                        Umumiy summa
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Bugunki yetkazib berilgan buyurtmalar soni:
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Bugunki bekor qilingan buyurtmalar soni:
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-
-                            </table>
                             </div>
                             <div style="margin-top: 10px" class="col-6">
-                                <table  class="table table-bordered datatable">
-                                    <tr>
-                                        <td>
-                                            -/-
-                                        </td>
-                                        <td>
-                                            soni
-                                        </td>
-                                        <td>
-                                            Umumiy summa
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Kechagi yetkazib berilgan buyurtmalar soni:
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Kechagi bekor qilingan buyurtmalar soni:
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-
-                                </table>
                             </div>
 
 

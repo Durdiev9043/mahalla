@@ -14,7 +14,8 @@ class HomeController extends BaseController
 
 
         $image1 = $request->file('image');
-        $image2 = asset('/storage/galereya/'.$user->img);
+//        $image2 = asset('/storage/galereya/'.$user->img);
+        $image2Path = 'http://mahalla.amusoft.uz/storage/galereya/'.$user->img;
 
         // Face++ API kalitlari
         $apiKey = '8Ca-AagNWYsSnnGE3U9PuMaVwfnckc39';
@@ -41,8 +42,10 @@ class HomeController extends BaseController
                 ],
                 [
                     'name' => 'image_file2',
-                    'contents' => fopen($image2->getRealPath(), 'r'),
-                    'filename' => $image2->getClientOriginalName(),
+//                    'contents' => fopen($image2->getRealPath(), 'r'),
+//                    'filename' => $image2->getClientOriginalName(),
+                    'contents' => fopen($image2Path, 'r'),
+                    'filename' => $user->img,
                 ],
             ],
         ]);

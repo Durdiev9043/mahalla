@@ -3,9 +3,9 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="/home" class="logo d-flex align-items-center">
             <div class="d-flex align-items-center">
-                <img src="{{ asset('logo.png') }}" alt="Logo" width="20%">
-                    <span class="text-danger text-center">MARJONA<br></span>
-                    <span class="text-success ml-1" style="font-size: 12px">Online Market</span>
+{{--                <img src="{{ asset('logo.png') }}" alt="Logo" width="20%">--}}
+                    <span class="text-danger text-center">M-NAZORAT<br></span>
+                    <span class="text-success ml-1" style="font-size: 12px"></span>
             </div>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>

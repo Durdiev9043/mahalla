@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\operator;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Stream;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,9 +16,11 @@ class HomeController extends Controller
     }
     public function compareFaces(Request $request)
     {// Rasm fayllarini olish
-        $image1 = $request->file('image1');
-        $image2 = $request->file('image2');
 
+        $user=User::where('id',1)->first();
+        $image1 = $request->file('image1');
+//        $image2 = $request->file('image2');
+        $image2Path = 'http://mahalla.amusoft.uz/storage/galereya/'.$user->img;
         // Face++ API kalitlari
         $apiKey = '8Ca-AagNWYsSnnGE3U9PuMaVwfnckc39';
         $apiSecret = '07d_l6Zwh7gNBb4PZRR9knYJHHI3-uaP';
@@ -42,8 +46,10 @@ class HomeController extends Controller
                 ],
                 [
                     'name' => 'image_file2',
-                    'contents' => fopen($image2->getRealPath(), 'r'),
-                    'filename' => $image2->getClientOriginalName(),
+//                    'contents' => $image2Path,//fopen($image2->getRealPath(), 'r'),
+//                    'filename' => $image2->getClientOriginalName(),
+                    'contents' => fopen($image2Path, 'r'),
+                    'filename' => $user->img,
                 ],
             ],
         ]);
