@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function compareFaces(Request $request)
     {// Rasm fayllarini olish
 
-        $user=User::where('id',1)->first();
+        $user=User::where('id',3)->first();
         $image1 = $request->file('image1');
 //        $image2 = $request->file('image2');
         $image2Path = 'http://mahalla.amusoft.uz/storage/galereya/'.$user->img;
