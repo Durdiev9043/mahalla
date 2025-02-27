@@ -18,6 +18,11 @@ class AuthController extends BaseController
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
+            $success['user_id'] =  $user->id;
+            $success['phone'] =  $user->phone;
+            $success['email'] =  $user->email;
+            $success['img'] =  $user->img;
+            $success['village'] =  $user->village->name;
 
             return $this->sendResponse($success, 'User login successfully.');
         }
