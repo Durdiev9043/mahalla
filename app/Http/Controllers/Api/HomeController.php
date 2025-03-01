@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Daily;
 use App\Models\Location;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Models\User;
@@ -83,13 +85,13 @@ class HomeController extends BaseController
 
             if ($d <= 150) {
 
-                    /*$data = Daily::create([
-                        'user_id' => $id,
-                        'latt' => $request->latt,
+                    $data = Daily::create([
+                        'user_id' => $user->id,
+                        'lat' => $request->lat,
                         'lang' => $request->lang,
                         'day' => Carbon::today(),
-                        'time' => $request->time,
-                    ]);*/
+                        'time' => 0,
+                    ]);
 
                 if ($data) {
                     return $this->sendSuccess($d, 'Siz ishga yetib keldingiz'); // distance, in meters
