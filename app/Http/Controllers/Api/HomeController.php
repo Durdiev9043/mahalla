@@ -94,10 +94,10 @@ class HomeController extends BaseController
                     ]);
 
                 if ($data) {
-                    return $this->sendSuccess($d, 'Siz ishga yetib keldingiz'); // distance, in meters
+                    return $this->sendResponse($d, 'Siz ishga yetib keldingiz'); // distance, in meters
                 }
             } else {
-                return $this->sendSuccess($d, 'Siz manzilga yetib bormagansiz'); // distance, in meters
+                return $this->sendResponse($d, 'Siz manzilga yetib bormagansiz'); // distance, in meters
             }
 
 
