@@ -69,7 +69,17 @@ class HomeController extends BaseController
             $latitude2 = Location::where('village_id', $user->village_id)->first()->lat;
             $longitude2 = Location::where('village_id', $user->village_id)->first()->lang;
             if (($latitude1 == $latitude2) && ($longitude1 == $longitude2)) {
-                return 0;
+                $data = Daily::create([
+                    'user_id' => $user->id,
+                    'lat' => $request->lat,
+                    'lang' => $request->lang,
+                    'day' => Carbon::today(),
+                    'time' => 0,
+                ]);
+
+                if ($data) {
+                    return $this->sendResponse($d, 'Siz ishga yetib keldingiz'); // distance, in meters
+                }
             } // distance is zero because they're the same point
 
             $p1 = deg2rad($latitude1);
@@ -97,12 +107,12 @@ class HomeController extends BaseController
                     return $this->sendResponse($d, 'Siz ishga yetib keldingiz'); // distance, in meters
                 }
             } else {
-                return $this->sendResponse($d, 'Siz manzilga yetib bormagansiz'); // distance, in meters
+                return $this->sendError( 'Siz manzilga yetib bormagansiz',['error'=>$d]); // distance, in meters
             }
 
 
         } else {
-           return $this->sendError('Foydalanuvchining Biometrik malumotlarini tekshirishda xatolik.', ['error'=>'Unauthorised']);
+           return $this->sendError('Foydalanuvchining Biometrik malumotlarini tekshirishda xatolik.', ['error'=>'Xatolik']);
         }
 
 
