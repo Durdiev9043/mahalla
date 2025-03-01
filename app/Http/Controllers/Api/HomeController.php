@@ -78,7 +78,7 @@ class HomeController extends BaseController
                 ]);
 
                 if ($data) {
-                    return $this->sendResponse($d, 'Siz ishga yetib keldingiz'); // distance, in meters
+                    return $this->sendResponse(0, 'Siz ishga yetib keldingiz'); // distance, in meters
                 }
             } // distance is zero because they're the same point
 
