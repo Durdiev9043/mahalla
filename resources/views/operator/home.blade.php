@@ -48,10 +48,38 @@
 
                         <div class="card-body row">
 
-                            <div style="margin-top: 10px" class="col-6">
+                            <div style="margin-top: 10px" >
+
+                                <table class="table table-borderless datatable">
+                                    <thead>
+                                    <tr>
+                                        {{--                                    <th scope="col">#</th>--}}
+                                        <th scope="col">#</th>
+                                        <th scope="col">Mahalla</th>
+                                        <th scope="col">Xodim</th>
+                                        <th scope="col">Vaqti</th>
+
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach($data as $item)
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->created_at->format('H:s') }}</td>
+
+
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div style="margin-top: 10px" class="col-6">
-                            </div>
+{{--                            <div style="margin-top: 10px" class="col-6">--}}
+{{--                            </div>--}}
 
 
 

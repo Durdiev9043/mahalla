@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\operator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Daily;
 use App\Models\User;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Stream;
 use Illuminate\Http\Request;
@@ -12,8 +14,12 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('operator.home');
+        $data=Daily::whereDate('created_at', Carbon::today())->get();
+
+        return view('operator.home',['data'=>$data]);
     }
+
+
     public function compareFaces(Request $request)
     {// Rasm fayllarini olish
 
