@@ -68,7 +68,7 @@
                                     @foreach($data as $item)
                                         <tr>
                                             <td></td>
-                                            <td></td>
+                                            <td>{{ $item->user->village->name }}</td>
                                             <td>{{ $item->user->name }}</td>
                                             <td>{{ $item->created_at->format('H:s') }}</td>
 
