@@ -25,7 +25,7 @@ class HomeController extends BaseController
             $time_interval=0;
         }else{
             $st=1;
-            $time_interval=$dd->created_at->diffForHumans($nineAM);
+            $time_interval=($dd->created_at->diffForHumans($nineAM))->format('H:i');
         }
         if ($dd) {
             $data = [
