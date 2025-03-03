@@ -55,9 +55,10 @@
                                     <tr>
                                         {{--                                    <th scope="col">#</th>--}}
                                         <th scope="col">#</th>
-                                        <th scope="col">Mahalla</th>
-                                        <th scope="col">Xodim</th>
-                                        <th scope="col">Vaqti</th>
+                                        <th scope="col">Mahalla nomi</th>
+                                        <th scope="col">Xodim(F.I.O)</th>
+                                        <th scope="col">Ishga kelish vaqti</th>
+                                        <th scope="col">Kechga qolish vaqti</th>
 
 
 
