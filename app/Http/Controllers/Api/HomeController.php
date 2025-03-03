@@ -20,13 +20,16 @@ class HomeController extends BaseController
         $dd = Daily::where('user_id', $id)->where('day',Carbon::today())->first();
         $time=Carbon::parse('09:00:00');
         $nineAM = Carbon::today()->addHours(9);
-        if (isset($dd) && $dd->created_at->format('H:i:s') > $time){
-            $st=0;
-            $time_interval=0;
-        }else{
-            $st=1;
-            $time_interval=$dd->created_at->diff($nineAM);
+        if ($dd){
+            if ($dd->created_at->format('H:i:s') > $time) {
+                $st = 0;
+                $time_interval = 0;
+            }else {
+                $st = 1;
+                $time_interval = $dd->created_at->diff($nineAM);
+            }
         }
+
         if ($dd) {
             $data = [
                 'come_time' => $dd->created_at->format('H:i:s'),
