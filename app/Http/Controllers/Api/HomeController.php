@@ -31,7 +31,7 @@ class HomeController extends BaseController
             $data = [
                 'come_time' => $dd->created_at->format('H:i:s'),
                 'status' => $st,
-                'time_interval' => $time_interval->h,
+                'time_interval' => $time_interval->h.$time_interval->i ,
 
             ];
                 return $this->sendResponse($data, 'Malumotlar'); // distance, in meters
