@@ -74,7 +74,7 @@
 
 
                                             <td>
-                                                @if($item->created_at->format('H:i:s') > Carbon::parse('09:00:00'))
+                                                @if($item->created_at->format('H:i:s') > Carbon\Carbon::parse('09:00:00'))
                                                     0
                                                 @else
                                                     {{ $item->created_at->diff()->h }}: {{ $item->created_at->diff()->i }}
