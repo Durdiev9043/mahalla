@@ -15,13 +15,13 @@ class HomeController extends BaseController
     public function come(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
-        $dd = Daily::where('user_id', $user->id)->get();
+        $dd = Daily::where('user_id', $user->id)->where('day',Carbon::today())->first();
         //created_at->format('d.m.Y')  == Carbon::now()->format('d.m.Y')
-        foreach ($dd as $item) {
-            if ($item->day == Carbon::today()) {
+//        foreach ($dd as $item) {
+            if ($dd) {
                 return $this->sendError('Siz manzilga allaqachon yetib kelgansiz', ['error' => 'error']);
             }
-        }
+//        }
     else{
 
         $image1 = $request->file('image');
