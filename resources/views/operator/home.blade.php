@@ -70,7 +70,7 @@
                                             <td></td>
                                             <td>{{ $item->user->village->name }}</td>
                                             <td>{{ $item->user->name }}</td>
-                                            <td>{{ $item->created_at->format('H:s') }}</td>
+                                            <td>{{ $item->created_at->format('H:m:s') }}</td>
 
 
                                         </tr>
