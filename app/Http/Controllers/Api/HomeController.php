@@ -25,13 +25,13 @@ class HomeController extends BaseController
             $time_interval=0;
         }else{
             $st=1;
-            $time_interval=($dd->created_at->diff($nineAM))->format('H:i');
+            $time_interval=$dd->created_at->diff($nineAM);
         }
         if ($dd) {
             $data = [
-                'came_time' => $dd->created_at->format('H:i:s'),
+                'come_time' => $dd->created_at->format('H:i:s'),
                 'status' => $st,
-                'time_interval' => $time_interval,
+                'time_interval' => $time_interval->h,
 
             ];
                 return $this->sendResponse($data, 'Malumotlar'); // distance, in meters
