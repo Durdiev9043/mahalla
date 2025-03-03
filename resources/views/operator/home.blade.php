@@ -77,7 +77,7 @@
                                                 @if($item->created_at->format('H:i:s') > Carbon\Carbon::today()->addHours(9))
                                                     0
                                                 @else
-                                                    {{ $item->created_at->diff()->h }}: {{ $item->created_at->diff()->i }}
+                                                    {{ $item->created_at->diff(Carbon\Carbon::today()->addHours(9))->h }}: {{ $item->created_at->diff(Carbon\Carbon::today()->addHours(9))->i }}
                                                @endif</td>
 
 
