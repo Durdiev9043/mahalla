@@ -12,6 +12,31 @@ use App\Models\User;
 
 class HomeController extends BaseController
 {
+
+
+    public function about($id)
+    {
+        $user = User::where('id',$id)->first();
+        $dd = Daily::where('user_id', $id)->where('day',Carbon::today())->first();
+        $time=Carbon::parse('09:00:00');
+        if (isset($dd) && $dd->created_at->format('H:i:s') > $time){
+            $st=1;
+        }else{
+            $st=0;
+        }
+        if ($dd) {
+            $data = [
+                'time' => $dd->created_at->format('H:i:s'),
+                'status' => $st,
+
+            ];
+                return $this->sendResponse($data, 'Malumotlar'); // distance, in meters
+
+        }
+        else{
+            return $this->sendError('Siz manzilga yetib kelmagansiz', ['error' => 'error']);
+        }
+    }
     public function come(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
