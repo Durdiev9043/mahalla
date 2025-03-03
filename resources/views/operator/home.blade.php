@@ -73,6 +73,14 @@
                                             <td>{{ $item->created_at->format('H:i:s') }}</td>
 
 
+                                            <td>
+                                                @if($item->created_at->format('H:i:s') > Carbon::parse('09:00:00'))
+                                                    0
+                                                @else
+                                                    {{ $item->created_at->diff()->h }}: {{ $item->created_at->diff()->i }}
+                                               @endif</td>
+
+
                                         </tr>
                                     @endforeach
                                     </tbody>
