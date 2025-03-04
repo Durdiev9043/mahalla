@@ -210,10 +210,10 @@ $data=$request->all();
                                 <input type="hidden" name="village_id" value="{{ $village->id }}">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" value="{{ $loc->lat }}" class="form-control" name="lat" placeholder="Lat">
+                                        <input type="text" @if($loc) @endifvalue="{{ $loc->lat }}" @endif class="form-control" name="lat" placeholder="Lat">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" value="{{ $loc->lang }}" name="lang" placeholder="Lang">
+                                        <input type="text" class="form-control" @if($loc) value="{{ $loc->lang }}" @endif name="lang" placeholder="Lang">
                                     </div>
                                 </div>
                                 <button>saqlash</button>
