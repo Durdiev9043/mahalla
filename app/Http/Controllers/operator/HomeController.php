@@ -15,8 +15,26 @@ class HomeController extends Controller
     public function home()
     {
         $data=Daily::whereDate('created_at', Carbon::today())->get();
+            $count_come=count($data);
+            $dd=count(Daily::where('created_at','<',Carbon::today()->addHours(9))->get());
+            $uu=count(User::all());
+            $ut=count(User::where('village_id',NULL)->get());
+            $count=$uu-$ut-$count_come;
+        return view('operator.home',['data'=>$data,'count_come'=>$count_come,'dd'=>$dd,'count'=>$count]);
+    }
+    public function seven()
+    {
 
-        return view('operator.home',['data'=>$data]);
+
+        $data=User::whereNotNull('village_id',)->get();
+
+        return view('operator.user',['data'=>$data]);
+    }
+    public function date(Request $request)
+    {
+        $data=Daily::where('created_at', $request->date)->get();
+
+        return view('operator.date',['data'=>$data]);
     }
 
 

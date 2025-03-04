@@ -20,9 +20,9 @@
         <div class="pagetitle">
             <h1>Mahalla yettiligini nazorat qiluvchi axborot tizimi</h1>
 
-{{--            <div class="btn-add">--}}
-{{--                <a href="{{ route('patient.create') }}">Be`mor qoshish</a>--}}
-{{--            </div>--}}
+            {{--            <div class="btn-add">--}}
+            {{--                <a href="{{ route('patient.create') }}">Be`mor qoshish</a>--}}
+            {{--            </div>--}}
 
         </div><!-- End Page Title -->
 
@@ -33,47 +33,21 @@
                 <div class="col-12 table_one">
                     <div class="card recent-sales overflow-auto table_one">
 
-{{--                        <div class="filter">--}}
-{{--                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>--}}
-{{--                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">--}}
-{{--                                <li class="dropdown-header text-start">--}}
-{{--                                    <h6>Filter</h6>--}}
-{{--                                </li>--}}
+                        {{--                        <div class="filter">--}}
+                        {{--                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>--}}
+                        {{--                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">--}}
+                        {{--                                <li class="dropdown-header text-start">--}}
+                        {{--                                    <h6>Filter</h6>--}}
+                        {{--                                </li>--}}
 
-{{--                                <li><a class="dropdown-item" href="#">Today</a></li>--}}
-{{--                                <li><a class="dropdown-item" href="#">This Month</a></li>--}}
-{{--                                <li><a class="dropdown-item" href="#">This Year</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
+                        {{--                                <li><a class="dropdown-item" href="#">Today</a></li>--}}
+                        {{--                                <li><a class="dropdown-item" href="#">This Month</a></li>--}}
+                        {{--                                <li><a class="dropdown-item" href="#">This Year</a></li>--}}
+                        {{--                            </ul>--}}
+                        {{--                        </div>--}}
 
-                        <div class="card-body row">
-<div class="col-4">
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-{{--        <div class="card-header"></div>--}}
-        <div class="card-body">
-            <h5 class="card-title text-white">Bugun ishga kelganlar</h5>
-            <p class="card-text font-weight-bold">{{ $count_come }}</p>
-        </div>
-    </div>
-</div>
-                            <div class="col-4">
-                                <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                        <div class="card-body pt-3 row">
 
-                                    <div class="card-body">
-                                        <h4 class="card-title text-white">Bugun ishga kech kelganlar</h4>
-                                        <p class="card-text text-white">{{ $dd }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-
-                                    <div class="card-body">
-                                        <h5 class="card-title text-white">Bugun ishga kelmaganlar</h5>
-                                        <p class="card-text text-white">{{ $count }}</p>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-10">
 
                             </div>
@@ -87,6 +61,7 @@
                                     </div>
                                 </form>
                             </div>
+
 
                             <div style="margin-top: 10px" >
 
@@ -119,7 +94,7 @@
                                                     0
                                                 @else
                                                     {{ $item->created_at->diff(Carbon\Carbon::today()->addHours(9))->h }}: {{ $item->created_at->diff(Carbon\Carbon::today()->addHours(9))->i }}
-                                               @endif</td>
+                                                @endif</td>
 
 
                                         </tr>
@@ -127,8 +102,8 @@
                                     </tbody>
                                 </table>
                             </div>
-{{--                            <div style="margin-top: 10px" class="col-6">--}}
-{{--                            </div>--}}
+                            {{--                            <div style="margin-top: 10px" class="col-6">--}}
+                            {{--                            </div>--}}
 
 
 
