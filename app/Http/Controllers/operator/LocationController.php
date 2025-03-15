@@ -30,11 +30,12 @@ class LocationController extends Controller
     public function store(Request $request)
     {
 
-        $data=Location::create([
-            'village_id'=>$request->village_id,
-            'lat'=>$request->lat,
-            'lang'=>$request->lang
-        ]);
+//        $data=Location::create([
+//            'village_id'=>$request->village_id,
+//            'lat'=>$request->lat,
+//            'lang'=>$request->lang
+//        ]);
+        $data=Location::create($request->all());
         return redirect()->back();
     }
 

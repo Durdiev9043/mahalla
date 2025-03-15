@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('village_id');
+            $table->unsignedBigInteger('village_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->integer('type');
             $table->double('lat');
             $table->double('lang');
             $table->timestamps();
 
 
             $table->foreign('village_id')->on('villages')->references('id');
+            $table->foreign('district_id')->on('districts')->references('id');
         });
     }
 

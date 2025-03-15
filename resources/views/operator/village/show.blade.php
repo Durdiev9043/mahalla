@@ -157,22 +157,37 @@ $data=$request->all();
                                         <div class="form-group">
 
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">name</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" placeholder="name">
+                                                <label for="exampleInputEmail1">Ismi</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="nomi" aria-describedby="emailHelp" placeholder="name">
                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">email</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="name">
+                                                <label for="exampleInputEmail1">Familyasi</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="familyasi" aria-describedby="emailHelp" placeholder="name">
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Otasining ismi</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="otasini_ismi" aria-describedby="emailHelp" placeholder="name">
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">login</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="login">
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Elektron pochta</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Elektron pochta:">
                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Tel:</label>
-                                                <input type="number" name="phone" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                <input type="number" name="phone" class="form-control" id="exampleInputPassword1" placeholder="Telefon raqamingiz">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                <label for="exampleInputPassword1">Parol</label>
+                                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Parol">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Surati :</label>
@@ -181,7 +196,7 @@ $data=$request->all();
 
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-primary">Saqlash</button>
                                         </div>
                                     </form>
                                 </div>
@@ -208,9 +223,10 @@ $data=$request->all();
                             <form method="post" action="{{ route('location.store') }}">
                                 @csrf
                                 <input type="hidden" name="village_id" value="{{ $village->id }}">
+                                <input type="hidden" name="type" value="0">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" @if($loc) @endifvalue="{{ $loc->lat }}" @endif class="form-control" name="lat" placeholder="Lat">
+                                        <input type="text" @if($loc) value="{{ $loc->lat }}" @endif class="form-control" name="lat" placeholder="Lat">
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" @if($loc) value="{{ $loc->lang }}" @endif name="lang" placeholder="Lang">

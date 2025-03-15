@@ -30,6 +30,7 @@ class VillageController extends Controller
             'region_id'=>Auth::user()->region_id,
             'district_id'=>Auth::user()->district_id
         ]);
+        return redirect()->back();
     }
 
     public function show(Village $village)

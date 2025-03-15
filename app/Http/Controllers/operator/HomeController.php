@@ -4,11 +4,13 @@ namespace App\Http\Controllers\operator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Daily;
+use App\Models\Location;
 use App\Models\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Stream;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,11 +24,17 @@ class HomeController extends Controller
             $count=$uu-$ut-$count_come;
         return view('operator.home',['data'=>$data,'count_come'=>$count_come,'dd'=>$dd,'count'=>$count]);
     }
+
+    public function extraLocation()
+    {
+        $data=Location::where('district_id',Auth::user()->district_id)->get();
+        return view('operator.location.extra',['data'=>$data]);
+    }
     public function seven()
     {
 
 
-        $data=User::whereNotNull('village_id',)->get();
+        $data=User::whereNotNull('village_id')->get();
 
         return view('operator.user',['data'=>$data]);
     }
