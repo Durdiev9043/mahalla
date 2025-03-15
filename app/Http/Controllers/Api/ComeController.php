@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
-class ComeController extends Controller
+class ComeController extends BaseController
 {
     public function come(Request $request)
     {
