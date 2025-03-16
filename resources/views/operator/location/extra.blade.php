@@ -84,7 +84,8 @@
                                     <label for="exampleInputEmail1" class="mb-2">Tashkilotni tanlang</label>
                                     <select class="form-control form-control-sm"  id="" name="type">
                                         <option value="1">Tuman (Shaxar) hokimligi</option>
-                                        <option value="2">Kambag`allik qisqartirish va aholi bandlikida ko'maklashish bo'limi</option>
+                                        <option value="2">Kambag`allik qisqartirish va aholi bandlikida ko'maklashish tuman(shaxar) bo'limi</option>
+                                        <option value="3">Ijtimoiyi himoya milliy agentligi tuman(shaxar) bo'limi</option>
                                     </select>
                                 </div>
                                 <div class="row">

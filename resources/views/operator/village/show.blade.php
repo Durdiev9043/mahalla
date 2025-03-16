@@ -102,6 +102,7 @@ $data=$request->all();
                                     {{--                                    <th scope="col">#</th>--}}
                                     <th scope="col">#</th>
                                     <th scope="col">Nomi</th>
+                                    <th scope="col">Lavozimi</th>
                                     <th scope="col">Tel</th>
                                     <th scope="col">Elektron pochta</th>
                                     <th scope="col">Surati</th>
@@ -116,6 +117,7 @@ $data=$request->all();
                                     <tr>
                                         <td></td>
                                         <td>{{ $user->name }}</td>
+                                        <td>{{ $user->position->name }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td><img src="{{ asset('/storage/galereya/'.$user->img) }}"
@@ -143,7 +145,7 @@ $data=$request->all();
                             <div id="myModal" class="modal" >
 
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content p-5 m-1">
                                     <span class="close">&times;</span>
                                     <form method="POST" action="{{ route('user.store') }}" accept-charset="UTF-8"
                                           enctype="multipart/form-data">
@@ -158,28 +160,31 @@ $data=$request->all();
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Ismi</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="nomi" aria-describedby="emailHelp" placeholder="name">
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="nomi" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Familyasi</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="familyasi" aria-describedby="emailHelp" placeholder="name">
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="familyasi" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Otasining ismi</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="otasini_ismi" aria-describedby="emailHelp" placeholder="name">
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="otasini_ismi" >
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleInputEmail1" class="mb-2">Tashkilotni tanlang</label>
+                                                <select class="form-control form-control-sm"  id="" name="type">
+                                                    @foreach($position as $item) <option value="{{ $item->id }}">{{ $item->name }}</option> @endforeach
+
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">login</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="login">
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Elektron pochta</label>
                                                 <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Elektron pochta:">
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Tel:</label>

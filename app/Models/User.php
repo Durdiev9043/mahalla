@@ -31,7 +31,10 @@ class User extends Authenticatable
         'img'
 
     ];
-
+public function position()
+{
+    return $this->belongsTo(Position::class);
+}
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\Position;
 use App\Models\User;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -38,7 +39,8 @@ class VillageController extends Controller
         $villages=Village::where('district_id',Auth::user()->district_id)->get();
         $users=User::where('village_id',$village->id)->get();
         $loc=Location::where('village_id',$village->id)->first();
-        return view('operator.village.show',['users'=>$users,'loc'=>$loc,'village'=>$village,'villages'=>$villages]);
+        $position=Position::all();
+        return view('operator.village.show',['users'=>$users,'loc'=>$loc,'village'=>$village,'villages'=>$villages,'position'=>$position]);
     }
 
 
