@@ -15,15 +15,15 @@
         <li class="nav-item">
             <a class="nav-link " href="{{ route('seven') }}">
                 <i class="bi bi-grid"></i>
-                <span>Mahalla yettiligi</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="{{ route('extraLocation') }}">
-                <i class="bi bi-grid"></i>
                 <span>Qoshimcha Manzillar</span>
             </a>
         </li>
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link " href="{{ route('extraLocation') }}">--}}
+{{--                <i class="bi bi-grid"></i>--}}
+{{--                <span>Qoshimcha Manzillar</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
 
 

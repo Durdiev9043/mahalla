@@ -224,7 +224,7 @@ $data=$request->all();
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title"><span>Mahalla fuqoralar yig`inining joyltextahuvi </span></h5>
+                            <h5 class="card-title"><span>Mahalla fuqoralar yig`inining joylashuvi </span></h5>
                             <form method="post" action="{{ route('location.store') }}">
                                 @csrf
                                 <input type="hidden" name="village_id" value="{{ $village->id }}">

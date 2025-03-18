@@ -58,7 +58,7 @@
             </div>
         @endif
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Mahallar ro'yxati</h1>
 
             <div class="btn-add">
                 <a id="myBtn" href="#">Qoshish</a>
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+{{--                            <h5 class="card-title">Recent Sales <span>| Today</span></h5>--}}
 
                             <table class="table table-borderless datatable">
                                 <thead>
