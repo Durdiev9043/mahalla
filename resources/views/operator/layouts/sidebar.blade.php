@@ -18,6 +18,12 @@
                 <span>Qoshimcha Manzillar</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link " href="{{ route('currentLocation') }}">
+                <i class="bi bi-grid"></i>
+                <span>Xarita</span>
+            </a>
+        </li>
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link " href="{{ route('extraLocation') }}">--}}
 {{--                <i class="bi bi-grid"></i>--}}

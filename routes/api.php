@@ -10,4 +10,6 @@ Route::middleware(['auth:sanctum'/*, 'abilities:check-status'*/])->group(functio
     Route::post('come/bandlik',[App\Http\Controllers\Api\ComeController::class,'bandlik']);
     Route::post('come/ijtimoyi',[App\Http\Controllers\Api\ComeController::class,'ijtimoyi']);
     Route::post('come/about/{id}',[App\Http\Controllers\Api\HomeController::class,'about']);
+
 });
+Route::get('location/{id}',[App\Http\Controllers\Api\HomeController::class,'location']);

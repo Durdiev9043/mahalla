@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CurrentLocation;
 use App\Models\Daily;
 use App\Models\Location;
 use Carbon\Carbon;
@@ -14,6 +15,22 @@ class HomeController extends BaseController
 {
 
 
+
+    public function location(Request $request,$id)
+    {
+        $user=User::where('id',$id)->first();
+        $data=CurrentLocation::create([
+           'user_id'=>$user->id,
+           'district_id'=>$user->district_id,
+           'village_id'=>$user->village_id,
+           'lat'=>$request->lat,
+           'lang'=>$request->lang,
+
+        ]);
+        if ($data){
+            return $this->sendResponse($data, 'Malumotlar qabul qilindi'); // distance, in meters
+        }
+    }
     public function about($id)
     {
         $user = User::where('id',$id)->first();

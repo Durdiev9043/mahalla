@@ -31,6 +31,10 @@ class User extends Authenticatable
         'img'
 
     ];
+    public function locations()
+    {
+        return $this->hasMany(CurrentLocation::class);
+    }
 public function position()
 {
     return $this->belongsTo(Position::class);

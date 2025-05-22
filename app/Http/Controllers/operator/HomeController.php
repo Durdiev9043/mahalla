@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\operator;
 
 use App\Http\Controllers\Controller;
+use App\Models\CurrentLocation;
 use App\Models\Daily;
 use App\Models\Location;
 use App\Models\User;
+use App\Models\Village;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Stream;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,7 +27,62 @@ class HomeController extends Controller
             $count=$uu-$ut-$count_come;
         return view('operator.home',['data'=>$data,'count_come'=>$count_come,'dd'=>$dd,'count'=>$count]);
     }
+    public function currentLocationVillage($id)
+    {
+        $users = User::where('village_id',$id)->where('role',3)->select('*')
+            ->addSelect([
+                'lat' => CurrentLocation::select('lat')
+                    ->whereColumn('user_id', 'users.id')
+                    ->latest('created_at')
+                    ->limit(1),
+                'lang' => CurrentLocation::select('lang')
+                    ->whereColumn('user_id', 'users.id')
+                    ->latest('created_at')
+                    ->limit(1),
+                'location_created_at' => CurrentLocation::select('created_at')
+                    ->whereColumn('user_id', 'users.id')
+                    ->latest('created_at')
+                    ->limit(1),
+            ])
+            ->get();
 
+        $villages=Village::where('district_id',Auth::user()->district_id)->get();
+        return view('operator.current.index',['users'=>$users,'villages'=>$villages]);
+
+    }
+public function currentLocation(){
+    $users = User::where('district_id',Auth::user()->district_id)->where('role',3)->select('*')
+        ->addSelect([
+            'lat' => CurrentLocation::select('lat')
+                ->whereColumn('user_id', 'users.id')
+                ->latest('created_at')
+                ->limit(1),
+            'lang' => CurrentLocation::select('lang')
+                ->whereColumn('user_id', 'users.id')
+                ->latest('created_at')
+                ->limit(1),
+            'location_created_at' => CurrentLocation::select('created_at')
+                ->whereColumn('user_id', 'users.id')
+                ->latest('created_at')
+                ->limit(1),
+        ])
+        ->get();
+
+    $locations = DB::table('current_locations as l1')
+        ->join(DB::raw('
+        (SELECT user_id, MAX(created_at) as latest_time
+         FROM current_locations
+         GROUP BY user_id) as l2
+    '), function($join) {
+            $join->on('l1.user_id', '=', 'l2.user_id')
+                ->on('l1.created_at', '=', 'l2.latest_time');
+        })
+        ->select('l1.user_id', 'l1.lat', 'l1.lang', 'l1.created_at')
+        ->get();
+//    dd($latestLocations);
+$villages=Village::where('district_id',Auth::user()->district_id)->get();
+    return view('operator.current.index',['locations' => $locations,'users'=>$users,'villages'=>$villages]);
+    }
     public function extraLocation()
     {
         $data=Location::where('district_id',Auth::user()->district_id)->get();
