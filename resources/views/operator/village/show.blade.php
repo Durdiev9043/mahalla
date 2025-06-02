@@ -172,7 +172,7 @@ $data=$request->all();
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="exampleInputEmail1" class="mb-2">Tashkilotni tanlang</label>
-                                                <select class="form-control form-control-sm"  id="" name="type">
+                                                <select class="form-control form-control-sm"  id="" name="position_id">
                                                     @foreach($position as $item) <option value="{{ $item->id }}">{{ $item->name }}</option> @endforeach
 
                                                 </select>

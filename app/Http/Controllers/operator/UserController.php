@@ -35,11 +35,15 @@ class UserController extends Controller
         $fileName = $uuid . '-' . time() . '.' . $request->img->getExtension();
         $request->img->move(public_path('../public/storage/galereya/'), $fileName);
         User::create([
+            'ismi'=>$request->ismi,
+            'familyasi'=>$request->familyasi,
+            'otasini_ismi'=>$request->otasini_ismi,
             'name'=>$request->name,
             'phone'=>$request->phone,
             'email'=>$request->email,
             'password' => bcrypt($request->password),
             'role'=>3,
+            'position_id'=>$request->position_id,
             'village_id'=>$request->village_id,
             'region_id'=>Auth::user()->region_id,
             'district_id'=>Auth::user()->district_id,
