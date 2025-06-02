@@ -160,7 +160,7 @@ $data=$request->all();
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Ismi</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="nomi" >
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="ismi" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Familyasi</label>

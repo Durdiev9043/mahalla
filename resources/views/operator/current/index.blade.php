@@ -135,12 +135,18 @@
                                 </div>
                             </div>
                                     <div class="col-4">
-                                        <table>
+                                        <table class="table bordered">
+                                            <tr>
+                                                <td>F.I.O</td>
+                                                <td>Mahalla</td>
+                                                <td>oxirgi ma'lumot bergan vaqt</td>
+                                                <td>Holati</td>
+                                            </tr>
                                         @foreach($users as $user)
                                             <tr>
-                                                <td>{{$user->name}}</td>
+                                                <td>{{$user->ismi}} {{$user->familyasi}}</td>
                                                 <td>{{$user->village->name}}</td>
-                                                <td>{{\Carbon\Carbon::parse($user->location_created_at)->format('d M Y H:i')}}</td>
+                                                <td>{{\Carbon\Carbon::parse($user->location_created_at)->addHours(5)->format('d M Y H:i')}}</td>
                                                 <td>
                                                     @if( \Carbon\Carbon::parse($user->location_created_at)->diffInMinutes(now()) > 10)
                                                         offline
