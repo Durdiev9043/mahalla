@@ -60,9 +60,9 @@
         <div class="pagetitle">
             <h1>Mahallar Xodimlarning joylashuvi</h1>
 
-{{--            <div class="btn-add">--}}
-{{--                <a id="myBtn" href="#">Qoshish</a>--}}
-{{--            </div>--}}
+            {{--            <div class="btn-add">--}}
+            {{--                <a id="myBtn" href="#">Qoshish</a>--}}
+            {{--            </div>--}}
 
         </div><!-- End Page Title -->
 
@@ -92,88 +92,107 @@
                                 <a href="{{ route('currentLocationVillage',$village->id) }}"  class="btn btn-success">{{$village->name}}</a>
                             @endforeach
                             <div class="row">
-                            <h3>Xodimlarning So‘nggi Joylashuvi</h3>
+                                <h3>Xodimlarning So‘nggi Joylashuvi</h3>
 
-                            <div id="map" class="col-7">
-                                <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-                                <style>
-                                    #map {
-                                        width: 60%;
-                                        height: 300px;
-                                        padding: 0;
-                                        margin: 0;
-                                    }
-                                </style>
-                                <!-- Leaflet JS -->
-                                <script>
-                                    // Laraveldan olingan massivni JavaScriptga uzatamiz
-                                    const locations = @json($users);
+                                <div id="map" class="col-7">
+                                    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+                                    <style>
+                                        #map {
+                                            width: 60%;
+                                            height: 300px;
+                                            padding: 0;
+                                            margin: 0;
+                                        }
+                                    </style>
+                                    <!-- Leaflet JS -->
+                                    <script>
+                                        // Laraveldan olingan massivni JavaScriptga uzatamiz
+                                        const locations = @json($users);
 
-                                    // Yandex xaritani yuklash
-                                    ymaps.ready(function () {
-                                        var map = new ymaps.Map("map", {
-                                            center: [41.67, 60.76], // markaz
-                                            zoom: 6
-                                        });
+                                        ymaps.ready(function () {
+                                            var map = new ymaps.Map("map", {
+                                                center: [41.67, 60.76],
+                                                zoom: 6
+                                            });
 
-                                        // Markerlar qo‘shamiz
-                                        locations.forEach(function (loc) {
-                                            if (loc.lat && loc.lang) {
-                                                var marker = new ymaps.Placemark([loc.lat, loc.lang], {
-                                                    balloonContent:`
-                                                <strong>${loc.name}</strong><br>
-                                                📞 Telefon: ${loc.phone ?? '–'}<br>
-                                                ✉️ Email: ${loc.email ?? '–'}<br>
-                                                🕒 So‘nggi joylashuv: ${loc.created_at}<br>`
+                                            let points = [];
+
+                                            // Markerlar va koordinatalar massivini to‘plash
+                                            locations.forEach(function (loc) {
+                                                if (loc.lat && loc.lang) {
+                                                    const coords = [loc.lat, loc.lang];
+                                                    points.push(coords);
+
+                                                    const marker = new ymaps.Placemark(coords, {
+                                                        balloonContent: `
+                        <strong>${loc.name}</strong><br>
+                        📞 Telefon: ${loc.phone ?? '–'}<br>
+                        ✉️ Email: ${loc.email ?? '–'}<br>
+                        🕒 So‘nggi joylashuv: ${loc.created_at}<br>`
+                                                    });
+                                                    map.geoObjects.add(marker);
+                                                }
+                                            });
+
+                                            // Chiziqlarni chizish (polyline)
+                                            if (points.length >= 2) {
+                                                const polyline = new ymaps.Polyline(points, {}, {
+                                                    balloonCloseButton: false,
+                                                    strokeColor: "#FF0000", // chiziq rangi
+                                                    strokeWidth: 4,         // chiziq qalinligi
+                                                    strokeOpacity: 0.7
                                                 });
-                                                map.geoObjects.add(marker);
+
+                                                map.geoObjects.add(polyline);
+                                                map.setBounds(polyline.geometry.getBounds(), {
+                                                    checkZoomRange: true
+                                                });
                                             }
                                         });
-                                    });
-                                </script>
-                                <div>
-                                </div>
-                            </div>
-                                    <div class="col-4">
-                                        <table class="table bordered">
-                                            <tr>
-                                                <td>F.I.O</td>
-                                                <td>Mahalla</td>
-                                                <td>oxirgi ma'lumot bergan vaqt</td>
-                                                <td>Holati</td>
-                                            </tr>
-                                        @foreach($users as $user)
-                                            <tr>
-                                                <td><a href="{{ route('currentLocationVillageUser',$user->id) }}"> {{$user->ismi}} {{$user->familyasi}} </a></td>
-                                                <td>{{$user->village->name}}</td>
-                                                <td>{{\Carbon\Carbon::parse($user->location_created_at)->addHours(5)->format('d M Y H:i')}}</td>
-                                                <td>
-                                                    @if( \Carbon\Carbon::parse($user->location_created_at)->diffInMinutes(now()) > 10)
-                                                        offline
-                                                    @else
-                                                        online
-                                                    @endif
-                                                </td>
-                                            </tr>
-
-                                        @endforeach
-                                        </table>
-
-
-
-
+                                    </script>
+                                    <div>
                                     </div>
+                                </div>
+                                <div class="col-4">
+{{--                                    <table class="table bordered">--}}
+{{--                                        <tr>--}}
+{{--                                            <td>F.I.O</td>--}}
+{{--                                            <td>Mahalla</td>--}}
+{{--                                            <td>oxirgi ma'lumot bergan vaqt</td>--}}
+{{--                                            <td>Holati</td>--}}
+{{--                                        </tr>--}}
+{{--                                        @foreach($users as $user)--}}
+{{--                                            <tr>--}}
+{{--                                                <td>{{$user->ismi}} {{$user->familyasi}}</td>--}}
+{{--                                                <td>{{$user->village->name}}</td>--}}
+{{--                                                <td>{{\Carbon\Carbon::parse($user->location_created_at)->addHours(5)->format('d M Y H:i')}}</td>--}}
+{{--                                                <td>--}}
+{{--                                                    @if( \Carbon\Carbon::parse($user->location_created_at)->diffInMinutes(now()) > 10)--}}
+{{--                                                        offline--}}
+{{--                                                    @else--}}
+{{--                                                        online--}}
+{{--                                                    @endif--}}
+{{--                                                </td>--}}
+{{--                                            </tr>--}}
 
+{{--                                        @endforeach--}}
+{{--                                    </table>--}}
+
+
+
+
+                                </div>
+
+
+                            </div>
 
                         </div>
-
                     </div>
+
+
+
+
                 </div>
-
-
-
-
-            </div>
 
         </section>
 

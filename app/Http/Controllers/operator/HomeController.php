@@ -50,6 +50,30 @@ class HomeController extends Controller
         return view('operator.current.index',['users'=>$users,'villages'=>$villages]);
 
     }
+    public function currentLocationVillageUser($id)
+    {
+//        $users = User::where('id',$id)->where('role',3)->select('*')
+//            ->addSelect([
+//                'lat' => CurrentLocation::select('lat')
+//                    ->whereColumn('user_id', 'users.id')
+//                    ->latest('created_at')
+//                    ->limit(1),
+//                'lang' => CurrentLocation::select('lang')
+//                    ->whereColumn('user_id', 'users.id')
+//                    ->latest('created_at')
+//                    ->limit(1),
+//                'location_created_at' => CurrentLocation::select('created_at')
+//                    ->whereColumn('user_id', 'users.id')
+//                    ->latest('created_at')
+//                    ->limit(1),
+//            ])
+//            ->get();
+        $users=CurrentLocation::where('user_id',$id)->get();
+
+        $villages=Village::where('district_id',Auth::user()->district_id)->get();
+        return view('operator.current.user',['users'=>$users,'villages'=>$villages]);
+
+    }
 public function currentLocation(){
     $users = User::where('district_id',Auth::user()->district_id)->where('role',3)->select('*')
         ->addSelect([

@@ -27,4 +27,5 @@ Route::group(['middleware' => ['role:operator']], function () {
     Route::get('location/extra', [\App\Http\Controllers\operator\HomeController::class,'extraLocation'])->name('extraLocation');
     Route::get('current/location/', [\App\Http\Controllers\operator\HomeController::class,'currentLocation'])->name('currentLocation');
     Route::get('current/location/village/{id}', [\App\Http\Controllers\operator\HomeController::class,'currentLocationVillage'])->name('currentLocationVillage');
+    Route::get('current/location/village/user/{id}', [\App\Http\Controllers\operator\HomeController::class,'currentLocationVillageUser'])->name('currentLocationVillageUser');
 });
