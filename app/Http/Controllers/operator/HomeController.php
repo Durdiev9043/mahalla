@@ -29,7 +29,9 @@ class HomeController extends Controller
     }
     public function currentLocationVillage($id)
     {
-        $users = User::where('village_id',$id)->where('role',3)->select('*')
+        $users = User::where('village_id', $id)
+            ->where('role', 3)
+            ->select('*')
             ->addSelect([
                 'lat' => CurrentLocation::select('lat')
                     ->whereColumn('user_id', 'users.id')
@@ -44,7 +46,16 @@ class HomeController extends Controller
                     ->latest('created_at')
                     ->limit(1),
             ])
-            ->get();
+            ->get()
+            ->map(function ($user) {
+                // Vaqtni kerakli formatga o‘zgartirish
+                if ($user->location_created_at) {
+                    $user->location_created_at_formatted = Carbon::parse($user->location_created_at)->format('d M Y H:i');
+                } else {
+                    $user->location_created_at_formatted = null;
+                }
+                return $user;
+            });
 
         $villages=Village::where('district_id',Auth::user()->district_id)->get();
         return view('operator.current.index',['users'=>$users,'villages'=>$villages]);
@@ -75,7 +86,10 @@ class HomeController extends Controller
 
     }
 public function currentLocation(){
-    $users = User::where('district_id',Auth::user()->district_id)->where('role',3)->select('*')
+
+    $users = User::where('district_id', Auth::user()->district_id)
+        ->where('role', 3)
+        ->select('*')
         ->addSelect([
             'lat' => CurrentLocation::select('lat')
                 ->whereColumn('user_id', 'users.id')
@@ -90,7 +104,16 @@ public function currentLocation(){
                 ->latest('created_at')
                 ->limit(1),
         ])
-        ->get();
+        ->get()
+        ->map(function ($user) {
+            // formatlash
+            if ($user->location_created_at) {
+                $user->location_created_at_formatted = Carbon::parse($user->location_created_at)->format('d M Y H:i');
+            } else {
+                $user->location_created_at_formatted = null;
+            }
+            return $user;
+        });
 
     $locations = DB::table('current_locations as l1')
         ->join(DB::raw('

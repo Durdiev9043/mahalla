@@ -101,7 +101,7 @@ $data=$request->all();
                                 <tr>
                                     {{--                                    <th scope="col">#</th>--}}
                                     <th scope="col">#</th>
-                                    <th scope="col">Nomi</th>
+                                    <th scope="col">F.I.SH</th>
                                     <th scope="col">Lavozimi</th>
                                     <th scope="col">Tel</th>
                                     <th scope="col">Elektron pochta</th>
@@ -116,7 +116,7 @@ $data=$request->all();
 @foreach($users as $user)
                                     <tr>
                                         <td></td>
-                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->ismi }} {{ $user->familyasi }} {{ $user->otasini_ismi }}</td>
                                         <td>{{ $user->position->name }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->email }}</td>
