@@ -17,6 +17,30 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function userEdit($id){
+        $user=User::where('id',$id)->first();
+        return view('operator.user.edit',['user'=>$user]);
+    }
+    public function userUpdate(Request $request, $id){
+
+        $user=User::where('id',$id)->first();
+        if ($request->password){
+        $user->update(
+            $request->all()
+        );}else{
+            $user->update([
+                'ismi'=>$request->ismi,
+                'familyasi'=>$request->familyasi,
+                'otasini_ismi'=>$request->otasini_ismi,
+                'name'=>$request->name,
+                'phone'=>$request->phone,
+                'email'=>$request->email
+            ]);
+        }
+        return redirect()->route('village.show',$user->village->id);
+
+    }
+
     public function home()
     {
         $data=Daily::whereDate('created_at', Carbon::today())->get();

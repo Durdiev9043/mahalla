@@ -115,7 +115,7 @@ $data=$request->all();
 
 @foreach($users as $user)
                                     <tr>
-                                        <td></td>
+                                        <td><a href="{{ route('edit',$user->id) }}"><i class="fas fa-edit"></i></a></td>
                                         <td>{{ $user->ismi }} {{ $user->familyasi }} {{ $user->otasini_ismi }}</td>
                                         <td>{{ $user->position->name }}</td>
                                         <td>{{ $user->phone }}</td>

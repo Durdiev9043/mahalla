@@ -22,6 +22,8 @@ Route::group(['middleware' => ['role:operator']], function () {
 //    Route::post('/compare-faces', [\App\Http\Controllers\operator\HomeController::class, 'compareFaces']);
 //    Route::get('/test', function (){return view('test');});
     Route::get('/lavozim', function (){return view('lavozim');});
+    Route::get('/user/edit/{id}', [\App\Http\Controllers\operator\HomeController::class,'userEdit'])->name('edit');
+    Route::put('/user/update/{id}', [\App\Http\Controllers\operator\HomeController::class,'userUpdate'])->name('update');
     Route::get('/seven', [\App\Http\Controllers\operator\HomeController::class,'extraLocation'])->name('seven');
     Route::get('/filter/date', [\App\Http\Controllers\operator\HomeController::class,'date'])->name('date');
     Route::get('location/extra', [\App\Http\Controllers\operator\HomeController::class,'extraLocation'])->name('extraLocation');
