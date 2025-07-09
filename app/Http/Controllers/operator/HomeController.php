@@ -103,7 +103,7 @@ class HomeController extends Controller
 //                    ->limit(1),
 //            ])
 //            ->get();
-        $users=CurrentLocation::where('user_id',$id)->get();
+        $users=CurrentLocation::where('user_id',$id)->with('user')->get();
 
         $villages=Village::where('district_id',Auth::user()->district_id)->get();
         return view('operator.current.user',['users'=>$users,'villages'=>$villages]);

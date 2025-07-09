@@ -104,8 +104,39 @@
                                             margin: 0;
                                         }
                                     </style>
+
                                     <!-- Leaflet JS -->
                                     <script>
+                                        function formatDate(dateStr) {
+                                            if (!dateStr) return '–';
+                                            const date = new Date(dateStr);
+
+                                            const day = String(date.getDate()).padStart(2, '0');
+                                            const month = String(date.getMonth() + 1).padStart(2, '0'); // 0-based
+                                            const year = date.getFullYear();
+
+                                            const hours = String(date.getHours()).padStart(2, '0');
+                                            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+                                            return `${day}.${month}.${year} ${hours}:${minutes}`;
+                                        }
+                                        function formatDatePlus5Hours(dateStr) {
+                                            if (!dateStr) return '–';
+                                            const date = new Date(dateStr);
+
+                                            // 5 soat qo‘shish (millisekundlarda)
+                                            date.setHours(date.getHours() + 5);
+
+                                            const day = String(date.getDate()).padStart(2, '0');
+                                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                                            const year = date.getFullYear();
+
+                                            const hours = String(date.getHours()).padStart(2, '0');
+                                            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+                                            return `${day}.${month}.${year} ${hours}:${minutes}`;
+                                        }
+
                                         // Laraveldan olingan massivni JavaScriptga uzatamiz
                                         const locations = @json($users);
 
@@ -125,10 +156,10 @@
 
                                                     const marker = new ymaps.Placemark(coords, {
                                                         balloonContent: `
-                        <strong>${loc.name}</strong><br>
-                        📞 Telefon: ${loc.phone ?? '–'}<br>
-                        ✉️ Email: ${loc.email ?? '–'}<br>
-                        🕒 So‘nggi joylashuv: ${loc.created_at}<br>`
+                        <strong>${loc.user?.ismi}</strong><br>
+                        📞 Telefon: ${loc.user?.phone ?? '–'}<br>
+                        ✉️ Email: ${loc.user?.email ?? '–'}<br>
+                        🕒 So‘nggi joylashuv: ${formatDatePlus5Hours(loc.user?.created_at)}<br>`
                                                     });
                                                     map.geoObjects.add(marker);
                                                 }
